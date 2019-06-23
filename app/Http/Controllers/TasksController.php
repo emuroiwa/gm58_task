@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class TasksController extends Controller
 {
@@ -25,7 +27,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-       
+       return view('tasks.addTask');
     }
 
     /**
@@ -36,7 +38,29 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $now = new DateTime();
+        if (Auth::check()) {
+            $task = Task::create([
+                'issue_type' => $request->input('taskType'),
+                'subject' => $request->input('taskSubject'),
+                'description' => $request->input('taskDescription'),
+                'key' => $request->input('taskDescription'),
+                'assignee' =>1,
+                'status' =>1,
+                'priority' =>1,
+                'due_date' =>$now,
+                'registed_by' => Auth::user()->id
+            ]);
+
+
+            if ($task) {
+                return view('tasks.addTask')->with('success','success');
+            }
+
+        }
+
+        return view('tasks.addTask')->with('error','error');
+
     }
 
     /**

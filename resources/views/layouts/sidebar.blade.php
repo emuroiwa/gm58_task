@@ -31,10 +31,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('addTask') }}" class="nav-link {!! classActiveSegment(2, 'addTask') !!}">
-                    <i class="fa fa-tasks"></i>
-                    <p>Tasks</p>
-                  </a>
+                    <a href="{{ route('addTask') }}" class="nav-link {!! classActiveSegment(2, 'addTask') !!}">
+                        <i class="fa fa-plus"></i>
+                        <p>Add Tasks</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('viewTask') }}" class="nav-link {!! classActiveSegment(2, 'viewTask') !!}">
+                        <i class="fa fa-tasks"></i>
+                        <p>Tasks</p>
+                    </a>
                 </li>
             </ul>
         </nav>

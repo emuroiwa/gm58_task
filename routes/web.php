@@ -22,7 +22,8 @@ Route::get('/dashboard/v2', 'DashboardController@versiontwo')->name('v2');
 Route::get('/dashboard/v3', 'DashboardController@versionthree')->name('v3');
 
 // Tasks
-Route::get('/tasks/addTask', 'TasksController@index')->name('addTask');
+Route::get('/tasks/viewTask', 'TasksController@index')->name('viewTask');
+Route::get('/tasks/addTask', 'TasksController@create')->name('addTask');
 
 Route::resource('tasks', 'TasksController');
 ///('tasks', 'TasksController');

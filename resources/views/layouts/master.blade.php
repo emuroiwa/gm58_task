@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="csrf-token" content={{csrf_token()}}>
 
-    <title>Laravel Starter</title>
+    <title>GM58 Task</title>
     <link rel="stylesheet" href="/css/app.css"></link>
     <link rel="stylesheet" href="/dist/plugins/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -35,6 +35,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- IonIcons -->
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="/dist/plugins/datatables/dataTables.bootstrap4.css">
+    <!-- select -->
+    <link rel="stylesheet" href="/dist/plugins/select2/select2.min.css">  
 </head>
 
 <body class="hold-transition sidebar-mini">

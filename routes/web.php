@@ -21,4 +21,10 @@ Route::get('/dashboard/home', 'DashboardController@versionone')->name('home');
 Route::get('/dashboard/v2', 'DashboardController@versiontwo')->name('v2');
 Route::get('/dashboard/v3', 'DashboardController@versionthree')->name('v3');
 
+// Tasks
+Route::get('/tasks/addTask', 'TasksController@index')->name('addTask');
+
+Route::resource('tasks', 'TasksController');
+///('tasks', 'TasksController');
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

@@ -8,18 +8,6 @@
 
     </ul>
 
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-        <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-    <i class="fa fa-search"></i>
-  </button>
-            </div>
-        </div>
-    </form>
-
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
@@ -77,15 +65,15 @@
                     <!-- Message End -->
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                <a href="#" class="dropdown-item dropdown-footer" >See All Messages</a>
             </div>
         </li>
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-  <i class="fa fa-bell-o"></i>
-  <span class="badge badge-warning navbar-badge">15</span>
-</a>
+            <a class="nav-link" data-toggle="modal" data-target="#modal-warning">
+                <i class="fa fa-sign-out"></i>
+             {{-- <span class="badge badge-warning navbar-badge">15</span> --}}
+            </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-header">15 Notifications</span>
                 <div class="dropdown-divider"></div>
@@ -109,4 +97,28 @@
         </li>
     </ul>
 </nav>
-<!-- /.navbar -->
+{{-- logout modal --}}
+<div class="modal fade" id="modal-warning">
+    <div class="modal-dialog">
+      <div class="modal-content bg-warning">
+        <div class="modal-header">
+          <h4 class="modal-title">Warning</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you wan t to logout</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+        
+        <a class="nav-link"  href="{{ route('logout') }}">
+            <button type="button" class="btn btn-outline-dark"> <i class="fa fa-sign-out"></i>Logout</button>
+        </a>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->

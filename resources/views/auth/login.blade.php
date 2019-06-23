@@ -2,7 +2,7 @@
 @section('content')
 <div class="login-box">
     <div class="login-logo">
-        Laravel Starter
+        GM58 Task
     </div>
     <div class="card">
         <div class="card-body login-card-body">
@@ -44,7 +44,7 @@
                 </div>
             </form>
 
-            <div class="social-auth-links text-center mb-3">
+            {{--  <div class="social-auth-links text-center mb-3">
                 <p>- OR -</p>
                 <a href="#" class="btn btn-block btn-primary">
           <i class="fab fa-facebook-f mr-2"></i> Sign in using Facebook
@@ -52,7 +52,7 @@
                 <a href="#" class="btn btn-block btn-danger">
           <i class="fab fa-google-plus-g mr-2"></i> Sign in using Google+
         </a>
-            </div>
+            </div>  --}}
             <!-- /.social-auth-links -->
 
             <p class="mb-1">

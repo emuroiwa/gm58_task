@@ -53,15 +53,15 @@
                                 @foreach ($tasks as $tasks)
                                     <tr>
                                         <td><a href="/tasks/{{$tasks->id}}">{{ $tasks->key }}</a></td>
-                                        <td>{{ $tasks->issue_type }}</td>
+                                        <td><span class="badge bg-info">{{ $tasks->issue_type_name }}</span></td>
                                         <td>{{ $tasks->subject }}</td>
-                                        <td>{{ $tasks->description }}</td>
                                         <td>{{ $tasks->assignee }}</td>
-                                        <td>{{ $tasks->status }}</td>
-                                        <td>{{ $tasks->priority }}</td>
+                                        <td><span class="badge bg-success">{{ $tasks->issue_status_name }}</span></td>
+                                        <td><span class="badge bg-danger">{{ $tasks->issue_priority_name }}</span></td>
+                                        <td>{{ $tasks->created_at }}</td>
                                         <td>{{ $tasks->due_date }}</td>
                                         <td>{{ $tasks->updated_at }}</td>
-                                        <td>{{ $tasks->registed_by }}</td>
+                                        <td>{{ $tasks->name }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

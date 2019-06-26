@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->string('key');
             $table->string('subject');
             $table->longText('description');
+            $table->longText('resolution');
             $table->integer('assignee')->unsigned()->nullable();
             $table->integer('status')->unsigned()->nullable();
             $table->integer('priority')->unsigned()->nullable();

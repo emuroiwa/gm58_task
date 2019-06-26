@@ -16,8 +16,22 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks= Task::all();
+        if (Auth::check())
+        {
+            $id = Auth::id();
+        
+       // $tasks= Task::all();
+
+        $tasks = Task::leftJoin('issue_types', 'issue_types.id', '=', 'tasks.issue_type')
+        ->leftJoin('issue_status', 'issue_status.id', '=', 'tasks.status')
+        ->leftJoin('issue_priority', 'issue_priority.id', '=', 'tasks.priority')
+        ->leftJoin('users', 'users.id', '=', 'tasks.registed_by')
+        ->select('tasks.*','issue_types.*','issue_status.*','issue_priority.*','users.name')
+        ->where('tasks.assignee','=',$id)
+        ->orderby('tasks.priority','tasks.due_date','tasks.status')->get();
+        //return $tasks;
         return view('tasks.viewTasks')->with('tasks',$tasks);
+        }
     }
 
     /**
@@ -72,7 +86,8 @@ class TasksController extends Controller
     public function show($id)
     {
         $task= Task::find($id);
-        return view('tasks.viewTasks')->with('tasks',$tasks);
+        //return$task;
+        return view('tasks.viewTask')->with('task',$task);
     }
 
     /**

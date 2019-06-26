@@ -37,6 +37,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="/dist/plugins/datatables/dataTables.bootstrap4.css">
     <!-- select -->
     <link rel="stylesheet" href="/dist/plugins/select2/select2.min.css">  
+    <!-- Toastr -->
+    <link rel="stylesheet" href="/dist/plugins/toastr/toastr.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini">

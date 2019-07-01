@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('viewTask') }}" class="nav-link {!! classActiveSegment(2, 'viewTask') !!}">
+                    <a href="{{ route('viewTask') }}" class="nav-link {!! classActiveSegment(1, 'tasks') !!} ">
                         <i class="fa fa-tasks"></i>
                         <p>Tasks</p>
                     </a>

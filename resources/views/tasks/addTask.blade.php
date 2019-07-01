@@ -43,10 +43,11 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="taskType">Task Type</label>
-                                            <select class="form-control" style="width:40%" id="taskType" name="taskType">
-                                                <option value="1">Task</option>
-                                                <option value="2">Change Request</option>
-                                                <option value="3">Other</option>
+                                            <select class="form-control" style="width:40%" id="taskType" name="taskType" required>
+                                                <option></option>
+                                                @foreach ($data['types'] as $type)
+                                                    <option value="{{$type['id']}}">{{$type['issue_type_name']}}</option>
+                                                @endforeach
                                             </select>
                                     </div>
                                     <div class="form-group">
@@ -62,7 +63,8 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="taskSubject" placeholder="Subject" value="New" disabled>
+                                                <label>New</label>
+                                                <input type="text" class="form-control" id="taskStatus" value="New" hidden>
                                             </div>
                                         </div>
                                         
@@ -71,14 +73,11 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                 <select class="form-control select2" style="width: 100%;">
-                                                    <option selected="selected">Alabama</option>
-                                                    <option>Alaska</option>
-                                                    <option disabled="disabled">California (disabled)</option>
-                                                    <option>Delaware</option>
-                                                    <option>Tennessee</option>
-                                                    <option>Texas</option>
-                                                    <option>Washington</option>
+                                                 <select class="form-control select2" style="width: 100%;" name="assignee" required>
+                                                     <option></option>
+                                                    @foreach ($data['assignees'] as $type)
+                                                        <option value="{{$type['id']}}">{{$type['name']}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -86,20 +85,25 @@
                                     
                                     <div class="row mb-2">
                                         <div class="col-sm-2">
-                                            <label>Status</label>
+                                            <label>Due Date</label>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="taskSubject" placeholder="Subject" value="New" disabled>
+                                                <input type="text" class="form-control" id="taskDueDate">
                                             </div>
                                         </div>
                                         
                                         <div class="col-sm-2">
-                                            <label>Status</label>
+                                            <label>Priority</label>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="taskSubject" placeholder="Subject" value="New" disabled>
+                                                <select class="form-control" style="width:40%" id="taskType" name="taskpriority" required>
+                                                    <option></option>
+                                                    @foreach ($data['priorities'] as $type)
+                                                        <option value="{{$type['id']}}">{{$type['issue_priority_name']}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -130,10 +134,16 @@
 @section('javascript')
 <!-- dataTables -->
 <script src="/dist/plugins/jquery/jquery.min.js"></script>
+<script src="/dist/plugins/jQueryUI/jquery-ui.min.js"></script>
+<script src="/dist/plugins/datepicker/bootstrap-datepicker.js"></script>
 <script>
+    $('#taskDueDate').datepicker({
+    });
+</script>
+{{-- <script>
           //Initialize Select2 Elements
     $(function () {
         $('.select2').select2()
     });
-</script>
+</script> --}}
 @endsection

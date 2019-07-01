@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use App\IssuePriority;
+use App\IssueType;
+use App\IssueStatus;
+use App\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,10 +27,10 @@ class TasksController extends Controller
        // $tasks= Task::all();
 
         $tasks = Task::leftJoin('issue_types', 'issue_types.id', '=', 'tasks.issue_type')
-        ->leftJoin('issue_status', 'issue_status.id', '=', 'tasks.status')
-        ->leftJoin('issue_priority', 'issue_priority.id', '=', 'tasks.priority')
+        ->leftJoin('issue_statuses', 'issue_statuses.id', '=', 'tasks.status')
+        ->leftJoin('issue_priorities', 'issue_priorities.id', '=', 'tasks.priority')
         ->leftJoin('users', 'users.id', '=', 'tasks.registed_by')
-        ->select('tasks.*','issue_types.*','issue_status.*','issue_priority.*','users.name')
+        ->select('tasks.*','issue_types.*','issue_statuses.*','issue_priorities.*','users.name')
         ->where('tasks.assignee','=',$id)
         ->orderby('tasks.priority','tasks.due_date','tasks.status')->get();
         //return $tasks;
@@ -41,7 +45,22 @@ class TasksController extends Controller
      */
     public function create()
     {
-       return view('tasks.addTask');
+        if (Auth::check())
+        {
+            $id = Auth::id();
+            $priorities=IssuePriority::all();
+            $statuses=IssueStatus::all();
+            $types=IssueType::all();
+            $assignees=User::where('id','<>',$id)->get();
+            $data=[
+                'priorities'=> $priorities,
+                'types'=> $types,
+                'statuses'=> $statuses,
+                'assignees'=> $assignees
+            ];
+            //   return $data;
+            return view('tasks.addTask')->with('data',$data);
+        }
     }
 
     /**
@@ -59,9 +78,9 @@ class TasksController extends Controller
                 'subject' => $request->input('taskSubject'),
                 'description' => $request->input('taskDescription'),
                 'key' => $request->input('taskDescription'),
-                'assignee' =>1,
-                'status' =>1,
-                'priority' =>1,
+                'assignee' =>$request->input('assignee'),
+                'status' =>$request->input('taskStatus'),
+                'priority' =>$request->input('taskpriority'),
                 'due_date' =>$now,
                 'registed_by' => Auth::user()->id
             ]);

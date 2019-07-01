@@ -25,3 +25,15 @@ if (!function_exists('classActiveSegment')) {
         return '';
     }
 }
+if (!function_exists('bageClass')) {
+    function bageClass($type,$value)
+    {
+        if($type=="issue_type") {
+            return $value==1 ? 'info' : '';
+        }
+        foreach ($value as $v) {
+            if(Request::segment($segment) == $v) return 'active';
+        }
+        return '';
+    }
+}

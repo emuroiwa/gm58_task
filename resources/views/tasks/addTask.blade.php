@@ -42,7 +42,7 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="taskType">Task Type</label>
+                                        <label for="taskType">Task Type</label><a href="{!! route('pdf') !!}">xxx</a>
                                             <select class="form-control" style="width:40%" id="taskType" name="taskType" required>
                                                 <option></option>
                                                 @foreach ($data['types'] as $type)
@@ -51,11 +51,11 @@
                                             </select>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="taskSubject" placeholder="Subject" name="taskSubject">
+                                        <input type="text" class="form-control" id="taskSubject" placeholder="Subject" name="taskSubject" autocomplete="off" required>
                                     </div>
                                     <div class="form-group">
                                             <label for="taskDescription">Description</label>
-                                            <textarea rows="12" class="form-control" id="taskDescription" name="taskDescription"></textarea>
+                                            <textarea rows="12" class="form-control" id="taskDescription" name="taskDescription" required></textarea>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-sm-2">
@@ -64,7 +64,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>New</label>
-                                                <input type="text" class="form-control" id="taskStatus" value="New" hidden>
+                                                <input type="text" class="form-control" id="taskStatus" name="taskStatus" value="1" hidden>
                                             </div>
                                         </div>
                                         
@@ -89,7 +89,7 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="taskDueDate">
+                                                <input type="text" class="form-control" id="taskDueDate" name="taskDueDate" autocomplete="off" readonly>
                                             </div>
                                         </div>
                                         
@@ -114,10 +114,7 @@
                                             <input type="file" class="custom-file-input" id="exampleInputFile">
                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                     </div>
-                                    <div class="input-group-append">
-                                            <span class="input-group-text" id="">Upload</span>
-                                     </div>
-                                    </div>
+                                </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
@@ -135,9 +132,13 @@
 <!-- dataTables -->
 <script src="/dist/plugins/jquery/jquery.min.js"></script>
 <script src="/dist/plugins/jQueryUI/jquery-ui.min.js"></script>
+<script src="/dist/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/dist/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="/dist/js/adminlte.js"></script>
 <script>
-    $('#taskDueDate').datepicker({
+    $('#taskDueDate').datepicker({format: 'yyyy-mm-dd'});
+    $('#taskDueDate').on('changeDate', function(ev){
+        $(this).datepicker('hide');
     });
 </script>
 {{-- <script>

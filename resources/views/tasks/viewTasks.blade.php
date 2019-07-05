@@ -94,10 +94,15 @@
 @endsection
 
 @section('javascript')
-<!-- dataTables -->
 <script src="/dist/plugins/jquery/jquery.min.js"></script>
+<script src="/dist/plugins/jQueryUI/jquery-ui.min.js"></script>
+<script src="/dist/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/dist/plugins/datepicker/bootstrap-datepicker.js"></script>
+
 <script src="/dist/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/dist/plugins/datatables/dataTables.bootstrap4.js"></script>
+<script src="/dist/js/adminlte.js"></script>
+
 <script>
         $(function () {
           $("#tableTasks").DataTable();

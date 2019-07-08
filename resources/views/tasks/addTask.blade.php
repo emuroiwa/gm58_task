@@ -38,7 +38,7 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                             {{--  <form role="form">  --}}
-                            <form method="post" action="{{ route('tasks.store') }}"  role="form">
+                            <form method="post" action="{{ route('tasks.store') }}"  role="form" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
@@ -51,7 +51,7 @@
                                             </select>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="taskSubject" placeholder="Subject" name="taskSubject" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="taskSubject" placeholder="Subject" name="taskSubject" autocomplete="off" required maxlength="254">
                                     </div>
                                     <div class="form-group">
                                             <label for="taskDescription">Description</label>
@@ -113,11 +113,10 @@
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="exampleInputFile">
                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        </div>
                                     </div>
                                 </div>
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
+                                 <!-- /.card-body -->
                                 <div class="card-footer">
                                     <input type="submit" class="btn btn-primary" value="Submit"/>
                                 </div>

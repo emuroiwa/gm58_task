@@ -22,28 +22,11 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getTasks(){
-        if (Auth::check())
-        {
-            $id = Auth::id();
-        
-        return Task::leftJoin('issue_types', 'issue_types.id', '=', 'tasks.issue_type')
-        ->leftJoin('issue_statuses', 'issue_statuses.id', '=', 'tasks.status')
-        ->leftJoin('issue_priorities', 'issue_priorities.id', '=', 'tasks.priority')
-        ->leftJoin('users', 'users.id', '=', 'tasks.registed_by')
-        ->select('tasks.*','issue_types.*','issue_statuses.*','issue_priorities.*','users.name')
-        ->where('tasks.assignee','=',$id)
-        ->orderby('tasks.priority','tasks.due_date','tasks.status')->get();
-        return $task;
 
-        }else{
-            return redirect('/');
-        }
-    }
     public function index()
     {
         
-        //return $tasks;
+        //return $this->getTasks();
         return view('tasks.viewTasks')->with('tasks',$this->getTasks());
 
     }
@@ -156,6 +139,25 @@ class TasksController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function getTasks(){
+        if (Auth::check())
+        {
+            $id = Auth::id();
+        
+        return Task::leftJoin('issue_types', 'issue_types.id', '=', 'tasks.issue_type')
+        ->leftJoin('issue_statuses', 'issue_statuses.id', '=', 'tasks.status')
+        ->leftJoin('issue_priorities', 'issue_priorities.id', '=', 'tasks.priority')
+        ->leftJoin('users', 'users.id', '=', 'tasks.registed_by')
+        ->select('tasks.*','issue_types.*','issue_statuses.*','issue_priorities.*','users.name','tasks.id as task_id')
+        ->where('tasks.assignee','=',$id)
+        ->orderby('tasks.priority','tasks.due_date','tasks.status')->get();
+
+        }else{
+            return redirect('/');
+        }
     }
     public function generatePDF()
     {

@@ -52,7 +52,7 @@
                             <tbody>
                                 @foreach ($tasks as $tasks)
                                     <tr>
-                                        <td><a href="/tasks/{{$tasks->id}}">{{ $tasks->key }}</a></td>
+                                        <td><a href="/tasks/{{$tasks->task_id}}">{{ $tasks->key }}</a></td>
                                         <td><span class="badge bg-info">{{ $tasks->issue_type_name }}</span></td>
                                         <td>{{ $tasks->subject }}</td>
                                         <td>{{ $tasks->assignee }}</td>
@@ -61,7 +61,7 @@
                                         <td>{{ $tasks->created_at }}</td>
                                         <td>{{ $tasks->due_date }}</td>
                                         <td>{{ $tasks->updated_at }}</td>
-                                        <td>{{ $tasks->name }}</td>
+                                        <td><i class="fas fa-user"></i> {{ $tasks->name }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
